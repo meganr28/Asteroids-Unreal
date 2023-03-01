@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Components/InputComponent.h" 
 #include "Ship.h"
 
 // Sets default values
@@ -43,5 +43,22 @@ void AShip::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	InputComponent->BindAxis("MoveForward", this, &AShip::Move_Forward);
+	InputComponent->BindAxis("Turn", this, &AShip::Move_Turn);
+}
+
+void AShip::Move_Forward(float AxisValue)
+{
+	if (AxisValue > 0)
+	{
+		ShipSphereComponent->AddForce(GetActorForwardVector() * AxisValue * 600);
+	}
+}
+
+void AShip::Move_Turn(float AxisValue)
+{
+	FRotator NewRotation = GetActorRotation();
+	NewRotation.Yaw += AxisValue * 2;
+	SetActorRotation(NewRotation);
 }
 

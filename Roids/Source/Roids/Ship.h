@@ -29,4 +29,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	USphereComponent* ShipSphereComponent;
+
+	// Input functions
+	void Move_Forward(float AxisValue);
+	void Move_Turn(float AxisValue);
 };
