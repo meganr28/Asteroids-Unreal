@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Bullet.h"
 #include "Components/SphereComponent.h" 
 
 #include "CoreMinimal.h"
@@ -33,4 +34,9 @@ public:
 	// Input functions
 	void Move_Forward(float AxisValue);
 	void Move_Turn(float AxisValue);
+	void Shoot();
+
+	// Projectile class to spawn 
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+		TSubclassOf<class ABullet> ProjectileClass;
 };
